@@ -47,7 +47,7 @@ def update_material(self, context):
         node = node_tree.nodes.new('ShaderNodeGroup')
         node.name = 'FS22_colorMask'
         node.label = 'FS22_colorMask'
-        node.location = (0, 0)
+        node.location = (750, 300)
         node.node_tree = bpy.data.node_groups.get('FS22_colorMask')
 
         node_tree.links.new(node.outputs[0], mat_output.inputs[0])

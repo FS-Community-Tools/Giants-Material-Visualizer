@@ -13,9 +13,9 @@ bl_info = {
 }
 
 classes = (
-    MatVis_PT_I3DioPanel,
-    MatVis_OT_GetData,
-    MatVis_OT_SetData,
+    MATVIS_PT_I3DioPanel,
+    MATVIS_OT_GetData,
+    MATVIS_OT_SetData,
 )
 
 
