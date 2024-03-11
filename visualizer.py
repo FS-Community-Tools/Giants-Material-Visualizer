@@ -1,6 +1,25 @@
 import bpy
 from bpy.types import Operator, Panel
 from .utils import *
+from bpy.app.handlers import persistent
+
+
+@persistent
+def validate_material(dummy):
+    if bpy.context.object is None and bpy.context.object.active_material is None:
+        return
+    mat = bpy.context.object.active_material
+    if mat.enable_visualization:
+        if 'FS22_colorMask' not in mat.node_tree.nodes:
+            mat.enable_visualization = False
+
+
+def real_time_visualization(dummy):
+    pass
+
+
+bpy.app.handlers.depsgraph_update_post.append(validate_material)
+bpy.app.handlers.depsgraph_update_post.append(real_time_visualization)
 
 
 class MatVis_OT_GetData(Operator):
@@ -11,12 +30,7 @@ class MatVis_OT_GetData(Operator):
 
     @classmethod
     def poll(cls, context):
-        if (context.object is not None
-                and context.object.active_material is not None
-                and context.material.enable_visualization
-                and get_i3dio()):
-            return 'colorMask' in context.object.active_material.i3d_attributes.variation
-        return False
+        return check_material(context)
 
     def execute(self, context):
         return {'FINISHED'}
@@ -30,12 +44,7 @@ class MatVis_OT_SetData(Operator):
 
     @classmethod
     def poll(cls, context):
-        if (context.object is not None
-                and context.object.active_material is not None
-                and context.material.enable_visualization
-                and get_i3dio()):
-            return 'colorMask' in context.object.active_material.i3d_attributes.variation
-        return False
+        return check_material(context)
 
     def execute(self, context):
         return {'FINISHED'}

@@ -43,7 +43,7 @@ def update_material(self, context):
         print('Material does not have Principled BSDF or Material Output node')
         return
 
-    if self.enable_visualisation:
+    if self.enable_visualization:
         node = node_tree.nodes.new('ShaderNodeGroup')
         node.name = 'FS22_colorMask'
         node.label = 'FS22_colorMask'
@@ -77,3 +77,15 @@ def update_material(self, context):
             node_tree.nodes.remove(node)
 
         node_tree.links.new(principled.outputs[0], mat_output.inputs[0])
+
+
+def check_material(context):
+    if ((context.object is None
+            and context.object.active_material is None)
+            or not context.object.active_material.enable_visualization
+            or not get_i3dio()):
+        return False
+    else:
+        if context.object.active_material.i3d_attributes.source != '':
+            return 'colorMask' in context.object.active_material.i3d_attributes.variation
+        return False
