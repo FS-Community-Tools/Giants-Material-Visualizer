@@ -33,7 +33,11 @@ def import_shader():
 
 def update_material(self, context):
     if 'FS22_colorMask' not in bpy.data.node_groups:
-        import_shader()
+        if context.active_object is not None:
+            if context.active_object.mode == 'EDIT':
+                context.active_object.mode_set(mode='OBJECT')
+                import_shader()
+                context.active_object.mode_set(mode='EDIT')
 
     mat = context.material
     node_tree = mat.node_tree
