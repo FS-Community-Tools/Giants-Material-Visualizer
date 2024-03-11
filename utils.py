@@ -81,7 +81,7 @@ def update_material(self, context):
 
 def check_material(context):
     if ((context.object is None
-            and context.object.active_material is None)
+         and context.object.active_material is None)
             or not context.object.active_material.enable_visualization
             or not get_i3dio()):
         return False
@@ -89,3 +89,23 @@ def check_material(context):
         if context.object.active_material.i3d_attributes.source != '':
             return 'colorMask' in context.object.active_material.i3d_attributes.variation
         return False
+
+
+def set_data_i3dio(context):
+    mat = context.object.active_material
+    shader = mat.node_tree.nodes.get('FS22_colorMask')
+    shader_parameters = mat.i3d_attributes.shader_parameters
+
+    for i in range(2, 9):
+        shader.inputs[f'colorMat{i - 2}'].default_value[:3] = shader_parameters[i].data_float_4[:3]
+        shader.inputs[f'mat{i - 2}'].default_value = shader_parameters[i].data_float_4[3]
+
+
+def get_data_i3dio(context):
+    mat = context.object.active_material
+    shader = mat.node_tree.nodes.get('FS22_colorMask')
+    shader_parameters = mat.i3d_attributes.shader_parameters
+
+    for i in range(2, 9):
+        shader_parameters[i].data_float_4[:3] = shader.inputs[f'colorMat{i - 2}'].default_value[:3]
+        shader_parameters[i].data_float_4[3] = shader.inputs[f'mat{i - 2}'].default_value

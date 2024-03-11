@@ -28,7 +28,7 @@ def register():
     )
     bpy.types.Scene.real_time_visualization = BoolProperty(
         name="Real Time Visualisation",
-        description="Enable real time visualization for the active material",
+        description="Enable real time update from visualizer to exported shader. May cause performance issues.",
         default=False
     )
     for cls in classes:

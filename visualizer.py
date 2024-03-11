@@ -15,7 +15,11 @@ def validate_material(dummy):
 
 
 def real_time_visualization(dummy):
-    pass
+    if not bpy.context.scene.real_time_visualization:
+        return
+
+    if check_material(bpy.context):
+        get_data_i3dio(bpy.context)
 
 
 bpy.app.handlers.depsgraph_update_post.append(validate_material)
@@ -33,6 +37,7 @@ class MatVis_OT_GetData(Operator):
         return check_material(context)
 
     def execute(self, context):
+        get_data_i3dio(context)
         return {'FINISHED'}
 
 
