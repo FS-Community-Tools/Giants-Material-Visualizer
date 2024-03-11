@@ -35,9 +35,11 @@ def update_material(self, context):
     if 'FS22_colorMask' not in bpy.data.node_groups:
         if context.active_object is not None:
             if context.active_object.mode == 'EDIT':
-                context.active_object.mode_set(mode='OBJECT')
+                bpy.ops.object.mode_set(mode='OBJECT')
                 import_shader()
-                context.active_object.mode_set(mode='EDIT')
+                bpy.ops.object.mode_set(mode='EDIT')
+            else:
+                import_shader()
 
     mat = context.material
     node_tree = mat.node_tree
@@ -91,7 +93,7 @@ def check_material(context):
         return False
     else:
         if context.object.active_material.i3d_attributes.source != '':
-            return 'colorMask' in context.object.active_material.i3d_attributes.variation
+            return 'colorMask' or 'Light' in context.object.active_material.i3d_attributes.variation
         return False
 
 
