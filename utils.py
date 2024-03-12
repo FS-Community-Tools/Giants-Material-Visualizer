@@ -93,7 +93,8 @@ def check_material(context):
         return False
     else:
         if context.object.active_material.i3d_attributes.source != '':
-            return 'colorMask' or 'Light' in context.object.active_material.i3d_attributes.variation
+            valid_shader_variations = ('colorMask', 'Light')
+            return any(variation in context.object.active_material.i3d_attributes.variation for variation in valid_shader_variations)
         return False
 
 
