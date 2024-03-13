@@ -63,15 +63,17 @@ def update_material(self, context):
             diffuse = principled.inputs.get('Base Color')
             if diffuse.links:
                 node_tree.links.new(node.inputs['Diffuse'], diffuse.links[0].from_socket)
-                node.inputs['Use Diffuse Color'].default_value = True
+                node.inputs['Use Diffuse Color'].default_value = False
 
             alpha = principled.inputs.get('Alpha')
             if alpha.links:
                 node_tree.links.new(node.inputs['Alpha'], alpha.links[0].from_socket)
 
-            normal = principled.inputs.get('Normal')
-            if normal.links:
-                node_tree.links.new(node.inputs['Normal'], normal.links[0].from_socket)
+            normal = node_tree.nodes.get('Normal Map')
+            if normal:
+                normal_color = normal.inputs.get('Color')
+                if normal_color.links:
+                    node_tree.links.new(node.inputs['Normal'], normal_color.links[0].from_socket)
 
             glossmap = node_tree.nodes.get('Glossmap')
             if glossmap:
