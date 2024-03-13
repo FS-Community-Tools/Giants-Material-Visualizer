@@ -61,9 +61,13 @@ def update_material(self, context):
         principled = node_tree.nodes.get('Principled BSDF')
         if principled:
             diffuse = principled.inputs.get('Base Color')
+            resolution = None
             if diffuse.links:
                 node_tree.links.new(node.inputs['Diffuse'], diffuse.links[0].from_socket)
                 node.inputs['Use Diffuse Color'].default_value = False
+                image_node = diffuse.links[0].from_node
+                if image_node.type == 'TEX_IMAGE':
+                    resolution = image_node.image.size[0], image_node.image.size[1]
 
             alpha = principled.inputs.get('Alpha')
             if alpha.links:
@@ -74,10 +78,18 @@ def update_material(self, context):
                 normal_color = normal.inputs.get('Color')
                 if normal_color.links:
                     node_tree.links.new(node.inputs['Normal'], normal_color.links[0].from_socket)
+                    if not resolution:
+                        image_node = normal_color.links[0].from_node
+                        if image_node.type == 'TEX_IMAGE':
+                            resolution = image_node.image.size[0], image_node.image.size[1]
 
             glossmap = node_tree.nodes.get('Glossmap')
             if glossmap:
                 node_tree.links.new(node.inputs['AO'], glossmap.outputs['Green'])
+
+            if resolution:
+                scale = max(max(resolution[0], resolution[1]) / 256.0, 1.0)
+                node.inputs['Resolution'].default_value = resolution[0], resolution[1], scale
 
     else:
         node = node_tree.nodes.get('FS22_colorMask')
