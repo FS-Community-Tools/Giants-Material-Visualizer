@@ -35,6 +35,8 @@ The addon is designed to be as user-friendly as possible, and the usage is as fo
 2. Select the material you want to visualize
 3. Click the `Enable Visualization` button in the `Material Visualizer` panel
 
+![](img/img_1.png)
+
 ### Shader Parameters
 
 |       Parameter       | Description                                                                        |
