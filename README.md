@@ -12,14 +12,15 @@ Big thanks to [FSG Modding](https://github.com/FSGModding/Blender_FS22_UDIM_Visu
 
 ## Installation
 
-Installation of the addon is done by downloading the latest release from the [releases page]() and installing it in Blender. The installation process is as follows:
+Installation of the addon is done by downloading the latest release from the [releases page](https://github.com/FS-Community-Tools/Giants-Material-Visualizer/releases) and installing it in Blender. The installation process is as follows:
 
-1. Open Blender
-2. Go to `Edit` -> `Preferences` -> `Add-ons` -> `Install...`
-3. Select the downloaded zip file and click `Install Add-on`
-4. Enable the addon by checking the box next to `Giants Material Visualizer` in the list of addons
-5. Click `Save Preferences` to save the changes
-6. The addon is now installed and ready to use
+1. Download [Latest Release](https://github.com/FS-Community-Tools/Giants-Material-Visualizer/releases/download/0.9.0/giants_material_vis.zip)
+2. Open Blender
+3. Go to `Edit` -> `Preferences` -> `Add-ons` -> `Install...`
+4. Select the downloaded zip file and click `Install Add-on`
+5. Enable the addon by checking the box next to `Giants Material Visualizer` in the list of addons
+6. Click `Save Preferences` to save the changes
+7. The addon is now installed and ready to use
 
 ## Usage
 
@@ -79,5 +80,5 @@ It is caused by handler that is triggered before the material is constructed.
 If you need help with the addon in any way, the following channels are available:
 
 * [Issue Tracker](https://github.com/FS-Community-Tools/Giants-Material-Visualizer/issues): If you come across any bugs, please post them here.
-* [AgroSketch Discord](https://discord.gg/Qb6hq5z): There is an official support channel available for the exporter
-* [VertexDezign Discord](https://discord.com/invite/vertexdezign): There is an official support channel available for the exporter
+* [AgroSketch Discord](https://discord.gg/Qb6hq5z): Tag me in the #modding channel @lkaminco
+* [VertexDezign Discord](https://discord.com/invite/vertexdezign): Tag me in the #modding channel @lkaminco
