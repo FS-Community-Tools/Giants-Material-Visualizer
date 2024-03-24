@@ -43,7 +43,7 @@ def update_material(self, context):
     try:
         mat = context.material
     except AttributeError:
-        print('Material does not have Principled BSDF or Material Output node')
+        print('Wrong context for material. Idk what is the problem')
         return
     node_tree = mat.node_tree
     mat_output = node_tree.nodes.get('Material Output')
@@ -88,11 +88,13 @@ def update_material(self, context):
 
             glossmap = node_tree.nodes.get('Glossmap')
             if glossmap:
-                node_tree.links.new(node.inputs['AO'], glossmap.outputs['Green'])
+                glossmap_color = glossmap.inputs.get('Color')
+                node_tree.links.new(node.inputs['Specular'], glossmap_color.links[0].from_socket)
 
             if resolution:
                 scale = max(max(resolution[0], resolution[1]) / 256.0, 1.0)
                 node.inputs['Resolution'].default_value = resolution[0], resolution[1], scale
+                node.inputs['Dirt Scale'].default_value = 1 if max(resolution[0], resolution[1]) > 2048 else 2
 
     else:
         node = node_tree.nodes.get('FS22_colorMask')
