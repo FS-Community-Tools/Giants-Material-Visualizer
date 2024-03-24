@@ -1,8 +1,8 @@
 # Giants Material Visualizer
 
 <p align="left">
-  <a href="https://github.com/StjerneIdioten/I3D-Blender-Addon/releases/latest/download/i3d_exporter.zip">Download Newest Release</a> •
-  <a href="https://github.com/StjerneIdioten/I3D-Blender-Addon/releases">All Releases</a> •
+  <a href="https://github.com/FS-Community-Tools/Giants-Material-Visualizer/releases/download/0.9.0/giants_material_vis.zip">Download Newest Release</a> •
+  <a href="https://github.com/FS-Community-Tools/Giants-Material-Visualizer/releases">All Releases</a> •
 </p>
 
 ## Description
