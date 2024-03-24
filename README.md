@@ -65,6 +65,9 @@ For now, all the features support just [Community I3D Exporter](https://github.c
 - **Get** - Updates the shader values that will be exported (Visualizer Parameters -> Shader Parameters)
 - **Set** - Updates the visualizer values from the shader (Shader Parameters -> Visualizer Parameters)
 
+
+![](img/img_3.png)
+
 ## Known Issues
 
 When the shader is first time imported, user needs to click twice to enable Visualization (this happens just in case when shader was not already imported in the scene).
